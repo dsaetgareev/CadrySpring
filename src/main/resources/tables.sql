@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 CREATE TABLE IF NOT EXISTS passport (
+  id INTEGER PRIMARY KEY AUTO_INCREMENT,
   user_id INTEGER REFERENCES users(user_id),
   ser_passport VARCHAR(255),
   number_passport VARCHAR(255),
@@ -18,17 +19,20 @@ CREATE TABLE IF NOT EXISTS passport (
 );
 
 CREATE TABLE IF NOT EXISTS phone (
+  id  INTEGER PRIMARY KEY AUTO_INCREMENT,
   user_id INTEGER REFERENCES users(user_id),
   phone_number VARCHAR(255)
 );
 
 CREATE TABLE IF NOT EXISTS address (
+  id  INTEGER PRIMARY KEY AUTO_INCREMENT,
   user_id INTEGER REFERENCES users(user_id),
   address_reg VARCHAR(255),
   address_res VARCHAR(255)
 );
 
 CREATE TABLE IF NOT EXISTS job (
+  id  INTEGER PRIMARY KEY AUTO_INCREMENT,
   user_id INTEGER REFERENCES users(user_id),
   position VARCHAR(255),
   kategory VARCHAR(255),

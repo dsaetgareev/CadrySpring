@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="ru.dinis.cadry.entities.Passport" table="passport" schema="cadry">
+        <id name="id" column="id"/>
+        <property name="userId" column="user_id"/>
+        <property name="serPassport" column="ser_passport"/>
+        <property name="numberPassport" column="number_passport"/>
+        <property name="extradition" column="extradition"/>
+        <property name="exDate" column="ex_date"/>
+        <property name="inn" column="inn"/>
+        <property name="snils" column="snils"/>
+    </class>
+</hibernate-mapping>
