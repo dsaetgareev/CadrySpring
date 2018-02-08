@@ -1,28 +1,81 @@
 package ru.dinis.cadry.entities;
 
 
-import java.sql.Timestamp;
+import javax.persistence.*;
+import java.sql.Date;
+
 
 /**
- * Create by dinis of 03.02.18.
+ * Create by dinis of 04.02.18.
  */
+@Entity
+@Table(name = "job")
 public class Job {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private Integer userId;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @Column(name = "position")
     private String position;
+
+    @Column(name = "kategory")
     private String kategory;
+
+    @Column(name = "subdivision")
     private String subdivision;
+
+    @Column(name = "rate")
     private Double rate;
+
+    @Column(name = "salary")
     private Double salary;
+
+    @Column(name = "order_number")
     private String orderNumber;
-    private Timestamp orderDate;
-    private Timestamp emplDate;
+
+    @Column(name = "order_date")
+    private Date orderDate;
+
+    @Column(name = "empl_date")
+    private Date emplDate;
+
+    @Column(name = "order_dismissal")
     private String orderDismissal;
-    private Timestamp orderDisDate;
-    private Timestamp disDate;
-    private Timestamp term;
-    private Integer workHours;
+
+    @Column(name = "order_dis_date")
+    private Date orderDisDate;
+
+    @Column(name = "dis_date")
+    private Date disDate;
+
+    @Column(name = "term")
+    private Date term;
+    @Column(name = "work_hourse")
+    private int workHours;
+
+    public Job() {
+    }
+
+    public Job(User user, String position, String kategory, String subdivision, Double rate, Double salary, String orderNumber, Date orderDate, Date emplDate, String orderDismissal, Date orderDisDate, Date disDate, Date term, int workHours) {
+        this.user = user;
+        this.position = position;
+        this.kategory = kategory;
+        this.subdivision = subdivision;
+        this.rate = rate;
+        this.salary = salary;
+        this.orderNumber = orderNumber;
+        this.orderDate = orderDate;
+        this.emplDate = emplDate;
+        this.orderDismissal = orderDismissal;
+        this.orderDisDate = orderDisDate;
+        this.disDate = disDate;
+        this.term = term;
+        this.workHours = workHours;
+    }
 
     public int getId() {
         return id;
@@ -32,12 +85,12 @@ public class Job {
         this.id = id;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getPosition() {
@@ -88,19 +141,19 @@ public class Job {
         this.orderNumber = orderNumber;
     }
 
-    public Timestamp getOrderDate() {
+    public Date getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Timestamp orderDate) {
+    public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
     }
 
-    public Timestamp getEmplDate() {
+    public Date getEmplDate() {
         return emplDate;
     }
 
-    public void setEmplDate(Timestamp emplDate) {
+    public void setEmplDate(Date emplDate) {
         this.emplDate = emplDate;
     }
 
@@ -112,82 +165,35 @@ public class Job {
         this.orderDismissal = orderDismissal;
     }
 
-    public Timestamp getOrderDisDate() {
+    public Date getOrderDisDate() {
         return orderDisDate;
     }
 
-    public void setOrderDisDate(Timestamp orderDisDate) {
+    public void setOrderDisDate(Date orderDisDate) {
         this.orderDisDate = orderDisDate;
     }
 
-    public Timestamp getDisDate() {
+    public Date getDisDate() {
         return disDate;
     }
 
-    public void setDisDate(Timestamp disDate) {
+    public void setDisDate(Date disDate) {
         this.disDate = disDate;
     }
 
-    public Timestamp getTerm() {
+    public Date getTerm() {
         return term;
     }
 
-    public void setTerm(Timestamp term) {
+    public void setTerm(Date term) {
         this.term = term;
     }
 
-    public Integer getWorkHours() {
+    public int getWorkHours() {
         return workHours;
     }
 
-    public void setWorkHours(Integer workHours) {
+    public void setWorkHours(int workHours) {
         this.workHours = workHours;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Job job = (Job) o;
-
-        if (id != job.id) return false;
-        if (userId != null ? !userId.equals(job.userId) : job.userId != null) return false;
-        if (position != null ? !position.equals(job.position) : job.position != null) return false;
-        if (kategory != null ? !kategory.equals(job.kategory) : job.kategory != null) return false;
-        if (subdivision != null ? !subdivision.equals(job.subdivision) : job.subdivision != null) return false;
-        if (rate != null ? !rate.equals(job.rate) : job.rate != null) return false;
-        if (salary != null ? !salary.equals(job.salary) : job.salary != null) return false;
-        if (orderNumber != null ? !orderNumber.equals(job.orderNumber) : job.orderNumber != null) return false;
-        if (orderDate != null ? !orderDate.equals(job.orderDate) : job.orderDate != null) return false;
-        if (emplDate != null ? !emplDate.equals(job.emplDate) : job.emplDate != null) return false;
-        if (orderDismissal != null ? !orderDismissal.equals(job.orderDismissal) : job.orderDismissal != null)
-            return false;
-        if (orderDisDate != null ? !orderDisDate.equals(job.orderDisDate) : job.orderDisDate != null) return false;
-        if (disDate != null ? !disDate.equals(job.disDate) : job.disDate != null) return false;
-        if (term != null ? !term.equals(job.term) : job.term != null) return false;
-        if (workHours != null ? !workHours.equals(job.workHours) : job.workHours != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (userId != null ? userId.hashCode() : 0);
-        result = 31 * result + (position != null ? position.hashCode() : 0);
-        result = 31 * result + (kategory != null ? kategory.hashCode() : 0);
-        result = 31 * result + (subdivision != null ? subdivision.hashCode() : 0);
-        result = 31 * result + (rate != null ? rate.hashCode() : 0);
-        result = 31 * result + (salary != null ? salary.hashCode() : 0);
-        result = 31 * result + (orderNumber != null ? orderNumber.hashCode() : 0);
-        result = 31 * result + (orderDate != null ? orderDate.hashCode() : 0);
-        result = 31 * result + (emplDate != null ? emplDate.hashCode() : 0);
-        result = 31 * result + (orderDismissal != null ? orderDismissal.hashCode() : 0);
-        result = 31 * result + (orderDisDate != null ? orderDisDate.hashCode() : 0);
-        result = 31 * result + (disDate != null ? disDate.hashCode() : 0);
-        result = 31 * result + (term != null ? term.hashCode() : 0);
-        result = 31 * result + (workHours != null ? workHours.hashCode() : 0);
-        return result;
     }
 }

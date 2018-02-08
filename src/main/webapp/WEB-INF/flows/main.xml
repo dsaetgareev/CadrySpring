@@ -5,7 +5,7 @@
 
     <view-state id="main">
         <on-render>
-            <evaluate expression="test.test()"/>
+            <evaluate expression="employeeImpl.test()"/>
         </on-render>
     </view-state>
 

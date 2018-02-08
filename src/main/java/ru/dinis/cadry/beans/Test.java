@@ -14,9 +14,12 @@ public class Test {
     @Autowired
     private SessionFactory sessionFactory;
 
+
     public void test() {
-        System.out.println("SessionFactory " + sessionFactory);
+        System.out.println("SessionFactory" + sessionFactory);
+
     }
+
 
 
 }

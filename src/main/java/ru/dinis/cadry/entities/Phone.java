@@ -1,14 +1,34 @@
 package ru.dinis.cadry.entities;
 
 
+import javax.persistence.*;
+
 /**
- * Create by dinis of 03.02.18.
+ * Create by dinis of 04.02.18.
  */
+@Entity
+@Table(name = "phone")
 public class Phone {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
-    private Integer userId;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @Column(name = "phone_number")
     private String phoneNumber;
+
+    public Phone() {
+    }
+
+    public Phone(User user, String phoneNumber) {
+        this.user = user;
+        this.phoneNumber = phoneNumber;
+    }
 
     public int getId() {
         return id;
@@ -18,12 +38,12 @@ public class Phone {
         this.id = id;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getPhoneNumber() {
@@ -32,27 +52,5 @@ public class Phone {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Phone phone = (Phone) o;
-
-        if (id != phone.id) return false;
-        if (userId != null ? !userId.equals(phone.userId) : phone.userId != null) return false;
-        if (phoneNumber != null ? !phoneNumber.equals(phone.phoneNumber) : phone.phoneNumber != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (userId != null ? userId.hashCode() : 0);
-        result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
-        return result;
     }
 }

@@ -1,21 +1,54 @@
 package ru.dinis.cadry.entities;
 
 
-import java.sql.Timestamp;
+
+import javax.persistence.*;
+import java.sql.Date;
 
 /**
- * Create by dinis of 03.02.18.
+ * Create by dinis of 04.02.18.
  */
+@Entity
+@Table(name = "passport")
 public class Passport {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
-    private Integer userId;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @Column(name = "ser_passport")
     private String serPassport;
+
+    @Column(name = "number_passport")
     private String numberPassport;
+    @Column(name = "extradition")
     private String extradition;
-    private Timestamp exDate;
+
+    @Column(name = "ex_date")
+    private Date exDate;
+
+    @Column(name = "inn")
     private String inn;
+    @Column(name = "snils")
     private String snils;
+
+    public Passport() {
+    }
+
+    public Passport(User user, String serPassport, String numberPassport, String extradition, Date exDate, String inn, String snils) {
+        this.user = user;
+        this.serPassport = serPassport;
+        this.numberPassport = numberPassport;
+        this.extradition = extradition;
+        this.exDate = exDate;
+        this.inn = inn;
+        this.snils = snils;
+    }
 
     public int getId() {
         return id;
@@ -25,12 +58,12 @@ public class Passport {
         this.id = id;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getSerPassport() {
@@ -57,11 +90,11 @@ public class Passport {
         this.extradition = extradition;
     }
 
-    public Timestamp getExDate() {
+    public Date getExDate() {
         return exDate;
     }
 
-    public void setExDate(Timestamp exDate) {
+    public void setExDate(Date exDate) {
         this.exDate = exDate;
     }
 
@@ -79,40 +112,5 @@ public class Passport {
 
     public void setSnils(String snils) {
         this.snils = snils;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Passport passport = (Passport) o;
-
-        if (id != passport.id) return false;
-        if (userId != null ? !userId.equals(passport.userId) : passport.userId != null) return false;
-        if (serPassport != null ? !serPassport.equals(passport.serPassport) : passport.serPassport != null)
-            return false;
-        if (numberPassport != null ? !numberPassport.equals(passport.numberPassport) : passport.numberPassport != null)
-            return false;
-        if (extradition != null ? !extradition.equals(passport.extradition) : passport.extradition != null)
-            return false;
-        if (exDate != null ? !exDate.equals(passport.exDate) : passport.exDate != null) return false;
-        if (inn != null ? !inn.equals(passport.inn) : passport.inn != null) return false;
-        if (snils != null ? !snils.equals(passport.snils) : passport.snils != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (userId != null ? userId.hashCode() : 0);
-        result = 31 * result + (serPassport != null ? serPassport.hashCode() : 0);
-        result = 31 * result + (numberPassport != null ? numberPassport.hashCode() : 0);
-        result = 31 * result + (extradition != null ? extradition.hashCode() : 0);
-        result = 31 * result + (exDate != null ? exDate.hashCode() : 0);
-        result = 31 * result + (inn != null ? inn.hashCode() : 0);
-        result = 31 * result + (snils != null ? snils.hashCode() : 0);
-        return result;
     }
 }
