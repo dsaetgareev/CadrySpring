@@ -10,6 +10,7 @@
 
     <context:annotation-config/>
     <context:component-scan base-package="ru.dinis.cadry"/>
+    <context:component-scan base-package="ru.dinis.cadry"/>
     <context:component-scan base-package="ru.dinis.cadry.entities"/>
     <context:component-scan base-package="ru.dinis.cadry.dao.impl"/>
 

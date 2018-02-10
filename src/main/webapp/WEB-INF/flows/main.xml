@@ -4,9 +4,10 @@
       xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
     <view-state id="main">
-        <on-render>
-            <evaluate expression="employeeImpl.test()"/>
-        </on-render>
+        <!--<on-render>-->
+            <!--<evaluate expression="userDaoImpl.getUsersAll()" result="userDaoImpl.users" result-type="java.util.List"/>-->
+        <!--</on-render>-->
+
     </view-state>
 
 

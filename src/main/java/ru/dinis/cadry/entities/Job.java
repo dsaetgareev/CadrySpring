@@ -2,6 +2,7 @@ package ru.dinis.cadry.entities;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 
 
@@ -10,12 +11,12 @@ import java.sql.Date;
  */
 @Entity
 @Table(name = "job")
-public class Job {
+public class Job implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 

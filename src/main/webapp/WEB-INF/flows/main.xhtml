@@ -8,6 +8,26 @@
       xmlns:p="http://primefaces.org/ui"
         >
 <f:view>
-    hello word
+    <div class="left-menu">
+        <h:form styleClass="genres" id="genresForm">
+            <ul>
+                <ui:repeat value="#{userDaoImpl.users}" var="user">
+                    <li>
+                        <p:commandLink value="#{user.firstName}" ajax="false" />
+                        <ui:repeat value="#{user.addresses}" var="address">
+                            <li>
+
+                                <p>#{address.addressReg}</p>
+
+                                <p>#{address.addressRes}</p>
+
+                            </li>
+                        </ui:repeat>
+                    </li>
+
+                </ui:repeat>
+            </ul>
+        </h:form>
+    </div>
 </f:view>
 </html>

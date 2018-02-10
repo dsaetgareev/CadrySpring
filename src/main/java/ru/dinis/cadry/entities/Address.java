@@ -2,20 +2,21 @@ package ru.dinis.cadry.entities;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Create by dinis of 04.02.18.
  */
 @Entity
 @Table(name = "address")
-public class Address {
+public class Address implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 

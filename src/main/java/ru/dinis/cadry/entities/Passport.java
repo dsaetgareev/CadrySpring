@@ -3,6 +3,7 @@ package ru.dinis.cadry.entities;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
@@ -10,7 +11,7 @@ import java.sql.Date;
  */
 @Entity
 @Table(name = "passport")
-public class Passport {
+public class Passport implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
