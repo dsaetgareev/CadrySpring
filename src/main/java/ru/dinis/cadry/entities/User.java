@@ -1,6 +1,8 @@
 package ru.dinis.cadry.entities;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -15,6 +17,7 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 @Component
+@Scope("singleton")
 public class User implements Serializable {
 
     @Id
@@ -37,20 +40,20 @@ public class User implements Serializable {
     @Column(name = "mar_status")
     private boolean marStatus;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @SuppressWarnings("all")
-    private List<Address> addresses;
+    private List<Address> addresses = new ArrayList<Address>();
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @SuppressWarnings("all")
-    private List<Job> jobs;
+    private List<Job> jobs = new ArrayList<Job>();
 
     @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Passport passport;
+    private Passport passport = new Passport();
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @SuppressWarnings("all")
-    private List<Phone> phones;
+    private List<Phone> phones = new ArrayList<Phone>();
 
     public User() {
     }

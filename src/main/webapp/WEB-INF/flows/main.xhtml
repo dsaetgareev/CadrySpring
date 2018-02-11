@@ -67,36 +67,68 @@
                                 <p:inputText styleClass="input_text" value="#{job.orderNumber}"/>
 
                                 <p:outputLabel for="orderDate" value="Дата приказа: " />
-                                <p:inputMask styleClass="input_text" id="orderDate" value="#{job.orderDate}" mask="99/99/9999"/>
+                                <p:calendar id="orderDate" value="#{job.orderDate}" pattern="dd-MM-yyyy" mask="true" />
 
                                 <p:outputLabel for="emplDate" value="Дата принятия: " />
-                                <p:inputMask styleClass="input_text" id="emplDate" value="#{job.emplDate}" mask="99/99/9999"/>
+                                <p:calendar id="emplDate" value="#{job.orderDate}" pattern="dd-MM-yyyy" mask="true" />
 
                                 <h:outputText value="Номер приказа о увольнении: "/>
                                 <p:inputText styleClass="input_text" value="#{job.orderDismissal}"/>
 
                                 <p:outputLabel for="orderDisDate" value="Дата приказа о увольнении: " />
-                                <p:inputMask styleClass="input_text" id="orderDisDate" value="#{job.orderDisDate}" mask="99/99/9999"/>
+                                <p:calendar id="orderDisDate" value="#{job.orderDate}" pattern="dd-MM-yyyy" mask="true" />
 
                                 <p:outputLabel for="disDate" value="Дата увольнения: " />
-                                <p:inputMask styleClass="input_text" id="disDate" value="#{job.disDate}" mask="99/99/9999"/>
+                                <p:calendar id="disDate" value="#{job.orderDate}" pattern="dd-MM-yyyy" mask="true" />
 
                                 <p:outputLabel for="term" value="Срок: " />
-                                <p:inputMask styleClass="input_text" id="term" value="#{job.term}" mask="99/99/9999"/>
+                                <p:calendar id="term" value="#{job.orderDate}" pattern="dd-MM-yyyy" mask="true" />
 
                                 <h:outputText value="Колличество рабочих часов: "/>
                                 <p:inputText styleClass="input_text" value="#{job.workHours}"/>
 
                         </h:panelGrid>
                 </p:tab>
-                <p:tab title="Godfather Part III">
+                <p:tab title="Паспорт">
                         <h:panelGrid columns="2" cellpadding="10">
-                                <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
-                                <h:outputText value="After a break of more than 15 years, director Francis Ford Coppola and writer Mario Puzo returned to the well for this third and final story of the fictional Corleone crime family.
-                    Two decades have passed, and crime kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his family would one day be completely legitimate." />
+                                <h:outputText value="Серия: "/>
+                                <p:inputText styleClass="input_text" value="#{passport.serPassport}"/>
+
+                                <h:outputText value="Номер: "/>
+                                <p:inputText styleClass="input_text" value="#{passport.numberPassport}"/>
+
+                                <h:outputText value="Кем выдан: "/>
+                                <p:inputTextarea styleClass="input_text" value="#{passport.extradition}"/>
+
+                                <p:outputLabel for="exDate" value="Дата выдачи: " />
+                                <p:calendar id="exDate" value="#{job.orderDate}" pattern="dd-MM-yyyy" mask="true" />
+
+                                <h:outputText value="ИНН: "/>
+                                <p:inputText styleClass="input_text" value="#{passport.inn}"/>
+
+                                <h:outputText value="СНИЛС: "/>
+                                <p:inputText styleClass="input_text" value="#{passport.snils}"/>
+                        </h:panelGrid>
+                </p:tab>
+                <p:tab title="Адрес">
+                        <h:panelGrid columns="2" cellpadding="10">
+                                <h:outputText value="Адрес регистрации: "/>
+                                <p:inputText styleClass="input_text address_set" value="#{address.addressReg}"
+                                placeholder="г.Уфа, ул.Правды, 1, кв. 33"/>
+
+                                <h:outputText value="Адрес проживания: "/>
+                                <p:inputText styleClass="input_text address_set" value="#{address.addressRes}"
+                                             placeholder="г.Уфа, ул.Ленина, 44, кв. 1"/>
+                        </h:panelGrid>
+                </p:tab>
+                <p:tab title="Телефон">
+                        <h:panelGrid columns="2" cellpadding="10">
+                                <p:outputLabel for="phone" value="Телефон:" />
+                                <p:inputMask id="phone" value="#{phone.phoneNumber}" placeholder="+7(917) 999-9999" mask="+9(999) 999-9999"/>
                         </h:panelGrid>
                 </p:tab>
         </p:tabView>
+                <p:commandButton process="@form" action="#{userDaoImpl.addUser(user, job, passport, address, phone)}" value="Сохранить" id="nonAjax" ajax="false" />
         </h:form>
         </div>
 </ui:define>

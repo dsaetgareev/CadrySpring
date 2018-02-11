@@ -1,11 +1,12 @@
 package ru.dinis.cadry.entities;
 
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 
 /**
@@ -14,6 +15,7 @@ import java.sql.Date;
 @Entity
 @Table(name = "job")
 @Component
+@Scope("singleton")
 public class Job implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,6 +1,9 @@
 package ru.dinis.cadry.entities;
 
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -9,6 +12,8 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "address")
+@Component
+@Scope("singleton")
 public class Address implements Serializable {
 
     @Id

@@ -11,5 +11,5 @@ import java.util.List;
 @Component
 public interface UserDao {
 
-    int addUser(User user, List<Address> addresses, List<Job> jobs, List<Phone> phones, Passport passport);
+    void addUser(User user, List<Address> addresses, List<Job> jobs, List<Phone> phones, Passport passport);
 }

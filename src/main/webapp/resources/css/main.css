@@ -361,3 +361,7 @@ body {
 .input_text {
     margin: 10px;
 }
+
+.address_set {
+    width: 600px;
+}

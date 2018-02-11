@@ -4,9 +4,9 @@
       xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
     <view-state id="main">
-        <!--<on-render>-->
-            <!--<evaluate expression="userDaoImpl.getUsersAll()" result="userDaoImpl.users" result-type="java.util.List"/>-->
-        <!--</on-render>-->
+        <!--<transition on="addUser">-->
+            <!--<evaluate expression="userDaoImpl.addUser(user, job, passport, address, phone)"/>-->
+        <!--</transition>-->
 
     </view-state>
 

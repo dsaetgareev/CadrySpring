@@ -1,8 +1,10 @@
 package ru.dinis.cadry.dao.impl;
 
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.webflow.execution.ScopeType;
+import ru.dinis.cadry.beans.CreateUsers;
 import ru.dinis.cadry.dao.interfaces.UserDao;
 import ru.dinis.cadry.entities.*;
 
@@ -31,15 +34,14 @@ public class UserDaoImpl implements UserDao {
     private SessionFactory sessionFactory;
 
 
-//    private List<User> users;
-
-//    public void setUsers(List<User> users) {
-//        this.users = users;
-//    }
 
     @Transactional
     @Override
-    public int addUser(User user, List<Address> addresses, List<Job> jobs, List<Phone> phones, Passport passport) {
+    public void addUser(User user, List<Address> addresses, List<Job> jobs, List<Phone> phones, Passport passport) {
+
+        Session session = this.sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+
         for (Address address : addresses) {
             address.setUser(user);
         }
@@ -58,21 +60,41 @@ public class UserDaoImpl implements UserDao {
         user.setJobs(jobs);
         user.setPhones(phones);
         user.setPassport(passport);
-        return user.getUserId();
+
+        try {
+            session.saveOrUpdate(user);
+            transaction.commit();
+            session.close();
+        } catch (HibernateException he) {
+            transaction.rollback();
+        }
+    }
+    @Transactional
+    public void addUser(User user, Job job, Passport passport, Address address, Phone phone) {
+
+        Session session = this.sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+        job.setUser(user);
+        passport.setUser(user);
+        address.setUser(user);
+        phone.setUser(user);
+
+        user.getJobs().add(job);
+        user.setPassport(passport);
+        user.getAddresses().add(address);
+        user.getPhones().add(phone);
+
+
+        try {
+            session.saveOrUpdate(user);
+            transaction.commit();
+        } catch (HibernateException he) {
+            transaction.rollback();
+            he.fillInStackTrace();
+        }
     }
 
-    public SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
 
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
-//    public List<User> getUsers() {
-//
-//        return users;
-//    }
 
     @Transactional
     public List<User> getUsers() {
