@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: dinis
+  Date: 10.02.18
+  Time: 15:20
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Title</title>
+
+</h:head>
+
+<h:body>
+
+    <f:facet name="last">
+        <h:outputStylesheet library="css" name="main.css"/>
+        <h:outputStylesheet library="primefaces-omega" name="theme.css"/>
+    </f:facet>
+
+    <div class="header">
+
+        <ui:include src="/WEB-INF/templates/header.xhtml"/>
+        <!--header-->
+    </div>
+
+    <div class="wrap">
+        <ui:include src="/WEB-INF/templates/search.xhtml"/>
+
+        <div class="content">
+            <ui:include src="/WEB-INF/templates/leftMenu.xhtml"/>
+
+            <div class="right-content">
+                <ui:insert name="books_count"/>
+
+                <ui:insert name="content"/>
+
+                <div class="clear"></div>
+            </div>
+            <!--end content-->
+        </div>
+
+        <div class="footer_blank"></div>
+        <!--wrap-->
+    </div>
+
+
+    
+</h:body>
+
+</html>

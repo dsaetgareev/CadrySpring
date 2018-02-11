@@ -26,7 +26,7 @@
         <springsecurity-version>3.2.6.RELEASE</springsecurity-version>
         <slf4j-version>1.6.1</slf4j-version>
         <mojarra-version>2.2.10</mojarra-version>
-        <primefaces-version>5.0</primefaces-version>
+        <primefaces-version>6.1</primefaces-version>
         <hibernate-version>4.3.8.Final</hibernate-version>
         <mysqlconnector-version>5.1.34</mysqlconnector-version>
     </properties>
@@ -193,6 +193,7 @@
             <artifactId>cglib</artifactId>
             <version>3.2.6</version>
         </dependency>
+
 
 
     </dependencies>

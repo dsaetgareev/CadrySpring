@@ -1,6 +1,8 @@
 package ru.dinis.cadry.entities;
 
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "users")
+@Component
 public class User implements Serializable {
 
     @Id

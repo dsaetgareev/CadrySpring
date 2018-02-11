@@ -7,27 +7,101 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
         >
-<f:view>
-    <div class="left-menu">
-        <h:form styleClass="genres" id="genresForm">
-            <ul>
-                <ui:repeat value="#{userDaoImpl.users}" var="user">
-                    <li>
-                        <p:commandLink value="#{user.firstName}" ajax="false" />
-                        <ui:repeat value="#{user.addresses}" var="address">
-                            <li>
 
-                                <p>#{address.addressReg}</p>
+<ui:composition template="/WEB-INF/templates/cadry.xhtml">
 
-                                <p>#{address.addressRes}</p>
+<ui:define name="content">
+        <div class="main_content">
+        <h:form id="form">
 
-                            </li>
-                        </ui:repeat>
-                    </li>
+        <p:growl id="msgs" showDetail="true" />
 
-                </ui:repeat>
-            </ul>
+        <h3 style="margin-top:0">Basic</h3>
+        <p:tabView>
+                <p:tab title="Персональные данные">
+                        <h:panelGrid columns="2" cellpadding="10">
+                                <h:outputText value="Фамилия"/>
+                                <p:inputText styleClass="input_text" value="#{user.lastName}"/>
+
+                                <h:outputText value="Имя"/>
+                                <p:inputText styleClass="input_text" value="#{user.firstName}"/>
+
+                                <h:outputText value="Отчество"/>
+                                <p:inputText styleClass="input_text" value="#{user.patronymic}"/>
+
+                                <p:outputLabel value="Пол:" />
+                                <p:selectOneRadio styleClass="input_text" id="console" value="#{user.gender}">
+                                        <f:selectItem itemLabel="М" itemValue="М" />
+                                        <f:selectItem itemLabel="Ж" itemValue="Ж" />
+                                </p:selectOneRadio>
+
+                                <h:outputText  value="В браке: " />
+                                <p:selectBooleanCheckbox styleClass="input_text" value="#{user.marStatus}" />
+
+                        </h:panelGrid>
+                </p:tab>
+                <p:tab title="Job">
+                        <h:panelGrid columns="2" cellpadding="10">
+                                <h:outputText value="Должность: "/>
+                                <p:inputText styleClass="input_text" value="#{job.position}"/>
+
+                                <p:outputLabel for="kategory" value="Категория: " />
+                                <p:selectOneMenu styleClass="input_text" id="kategory" value="#{job.kategory}">
+                                        <f:selectItem itemLabel="Основная" itemValue="Основная" />
+                                        <f:selectItem itemLabel="Совмещение" itemValue="Совмещение" />
+                                        <f:selectItem itemLabel="Совместительство" itemValue="Совместительство" />
+                                </p:selectOneMenu>
+
+                                <p:outputLabel for="subdivision" value="Подразделение: " />
+                                <p:selectOneMenu styleClass="input_text" id="subdivision" value="#{job.subdivision}">
+                                        <f:selectItems value="#{position.positions}" />
+                                </p:selectOneMenu>
+
+                                <h:outputText value="Ставка: "/>
+                                <p:inputText styleClass="input_text" value="#{job.salary}"/>
+
+                                <h:outputText value="Оклад: "/>
+                                <p:inputText styleClass="input_text" value="#{job.rate}"/>
+
+                                <h:outputText value="Номер приказа: "/>
+                                <p:inputText styleClass="input_text" value="#{job.orderNumber}"/>
+
+                                <p:outputLabel for="orderDate" value="Дата приказа: " />
+                                <p:inputMask styleClass="input_text" id="orderDate" value="#{job.orderDate}" mask="99/99/9999"/>
+
+                                <p:outputLabel for="emplDate" value="Дата принятия: " />
+                                <p:inputMask styleClass="input_text" id="emplDate" value="#{job.emplDate}" mask="99/99/9999"/>
+
+                                <h:outputText value="Номер приказа о увольнении: "/>
+                                <p:inputText styleClass="input_text" value="#{job.orderDismissal}"/>
+
+                                <p:outputLabel for="orderDisDate" value="Дата приказа о увольнении: " />
+                                <p:inputMask styleClass="input_text" id="orderDisDate" value="#{job.orderDisDate}" mask="99/99/9999"/>
+
+                                <p:outputLabel for="disDate" value="Дата увольнения: " />
+                                <p:inputMask styleClass="input_text" id="disDate" value="#{job.disDate}" mask="99/99/9999"/>
+
+                                <p:outputLabel for="term" value="Срок: " />
+                                <p:inputMask styleClass="input_text" id="term" value="#{job.term}" mask="99/99/9999"/>
+
+                                <h:outputText value="Колличество рабочих часов: "/>
+                                <p:inputText styleClass="input_text" value="#{job.workHours}"/>
+
+                        </h:panelGrid>
+                </p:tab>
+                <p:tab title="Godfather Part III">
+                        <h:panelGrid columns="2" cellpadding="10">
+                                <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
+                                <h:outputText value="After a break of more than 15 years, director Francis Ford Coppola and writer Mario Puzo returned to the well for this third and final story of the fictional Corleone crime family.
+                    Two decades have passed, and crime kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his family would one day be completely legitimate." />
+                        </h:panelGrid>
+                </p:tab>
+        </p:tabView>
         </h:form>
-    </div>
-</f:view>
+        </div>
+</ui:define>
+<ui:define name="books_count">
+
+</ui:define>
+</ui:composition>
 </html>
