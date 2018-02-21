@@ -25,6 +25,8 @@
     <mapping class="ru.dinis.cadry.entities.Job"/>
     <mapping class="ru.dinis.cadry.entities.Passport"/>
     <mapping class="ru.dinis.cadry.entities.Phone"/>
+
+
     <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 

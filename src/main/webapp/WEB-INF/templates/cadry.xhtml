@@ -35,13 +35,15 @@
     <div class="wrap">
         <ui:include src="/WEB-INF/templates/search.xhtml"/>
 
-        <div class="content">
+
+        <div class="content" id="div_content">
             <ui:include src="/WEB-INF/templates/leftMenu.xhtml"/>
 
-            <div class="right-content">
+            <div class="right-content" id="main_content">
                 <ui:insert name="books_count"/>
 
                 <ui:insert name="content"/>
+
 
                 <div class="clear"></div>
             </div>

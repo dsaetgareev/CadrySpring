@@ -23,23 +23,33 @@
     <div class="search">
         <h:form styleClass="search_form">
 
-                        <h:outputText value="Фамилия"/>
-                        <p:inputText styleClass="search_string" placeholder="Фамилия"/>
+            <h:outputText value="Фамилия"/>
+            <p:inputText styleClass="search_string" placeholder="Фамилия"
+                         value="#{userService.searchBean.lastName}">
+                <p:ajax event="keyup" update=":form" listener="#{userService.getUsersByName}"/>
+            </p:inputText>
+
+            <h:outputText value="Имя"/>
+            <p:inputText styleClass="search_string" placeholder="Имя"
+                         value="#{userService.searchBean.firstName}">
+                <p:ajax event="keyup" update=":form" listener="#{userService.getUsersByName}"/>
+            </p:inputText>
+
+            <h:outputText value="Отчество"/>
+            <p:inputText styleClass="search_string" placeholder="Отчество"
+                         value="#{userService.searchBean.patronymic}">
+                <p:ajax event="keyup" update=":form" listener="#{userService.getUsersByName}"/>
+            </p:inputText>
 
 
-
-                        <h:outputText value="Имя"/>
-                        <p:inputText styleClass="search_string" placeholder="Имя"/>
-
-
-
-                        <h:outputText value="Отчество"/>
-                        <p:inputText styleClass="search_string" placeholder="Отчество"/>
-
-
-            <p:commandButton  value="найти" styleClass="btnSearch"/>
+            <p:commandButton value="Найти" styleClass="btnSearch" action="#"/>
 
             <!--end search_form-->
+        </h:form>
+
+        <h:form>
+            <p:commandButton value="Добавить сотрудника" action="addNewUser" id="iconOnly"
+                             icon="ui-icon-disk" title="Добавить сотрудника" styleClass="btnAdd"/>
         </h:form>
         <!--end search-->
     </div>

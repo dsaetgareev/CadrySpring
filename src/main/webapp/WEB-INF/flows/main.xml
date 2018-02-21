@@ -4,9 +4,52 @@
       xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
     <view-state id="main">
-        <!--<transition on="addUser">-->
-            <!--<evaluate expression="userDaoImpl.addUser(user, job, passport, address, phone)"/>-->
-        <!--</transition>-->
+
+        <transition on="addNewUser" to="newUser"/>
+        <transition on="allUsers" to="main">
+            <evaluate expression="userService.allUsers"/>
+        </transition>
+        <transition on="showUser" to="showUser">
+        </transition>
+
+        <transition on="showListByPosition">
+            <evaluate expression="userService.getUserByPosition()"/>
+        </transition>
+
+    </view-state>
+
+
+
+
+    <view-state id="showUser">
+
+        <transition on="addNewUser" to="newUser"/>
+        <transition on="main" to="main"/>
+        <transition on="showListByPosition" to="main">
+            <evaluate expression="userService.getUserByPosition()"/>
+        </transition>
+
+        <transition on="allUsers" to="main">
+            <evaluate expression="userService.allUsers"/>
+        </transition>
+
+    </view-state>
+
+    <view-state id="newUser">
+        <var name="newUser" class="ru.dinis.cadry.entities.User"/>
+        <var name="newJob" class="ru.dinis.cadry.entities.Job"/>
+        <var name="newPassport" class="ru.dinis.cadry.entities.Passport"/>
+        <var name="newAddress" class="ru.dinis.cadry.entities.Address"/>
+        <var name="newPhone" class="ru.dinis.cadry.entities.Phone"/>
+        <transition on="addNewUser" to="newUser"/>
+        <transition on="main" to="main"/>
+        <transition on="showListByPosition" to="main">
+            <evaluate expression="userService.getUserByPosition()"/>
+        </transition>
+
+        <transition on="allUsers" to="main">
+            <evaluate expression="userService.allUsers"/>
+        </transition>
 
     </view-state>
 

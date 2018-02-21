@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+        >
+
+<ui:composition template="/WEB-INF/templates/cadry.xhtml">
+
+<ui:define name="content">
+        <div class="main_content">
+        <h:form id="form">
+
+        <p:growl id="msgs" showDetail="true" />
+
+        <h3 style="margin-top:0">Анкета</h3>
+        <p:tabView>
+                <p:tab title="Персональные данные">
+                        <h:panelGrid columns="2" cellpadding="10">
+                                <h:outputText value="Фамилия"/>
+                                <p:inputText styleClass="input_text" value="#{newUser.lastName}"/>
+
+                                <h:outputText value="Имя"/>
+                                <p:inputText styleClass="input_text" value="#{newUser.firstName}"/>
+
+                                <h:outputText value="Отчество"/>
+                                <p:inputText styleClass="input_text" value="#{newUser.patronymic}"/>
+
+                                <p:outputLabel value="Пол:" />
+                                <p:selectOneRadio styleClass="input_text" id="console" value="#{newUser.gender}">
+                                        <f:selectItem itemLabel="М" itemValue="М" />
+                                        <f:selectItem itemLabel="Ж" itemValue="Ж" />
+                                </p:selectOneRadio>
+
+                                <p:outputLabel for="birthday" value="Дата рождения: "/>
+                                <p:calendar id="birthday" value="#{newUser.birthday}" pattern="dd/MM/yyyy"
+                                            mask="true"/>
+
+                                <h:outputText  value="В браке: " />
+                                <p:selectBooleanCheckbox styleClass="input_text" value="#{newUser.marStatus}" />
+
+                        </h:panelGrid>
+                </p:tab>
+                <p:tab title="Работа">
+                        <h:panelGrid columns="2" cellpadding="10">
+                                <h:outputText value="Должность: "/>
+                                <p:inputText styleClass="input_text" value="#{newJob.position}"/>
+
+                                <p:outputLabel for="kategory" value="Категория: " />
+                                <p:selectOneMenu styleClass="input_text" id="kategory" value="#{newJob.kategory}">
+                                        <f:selectItem itemLabel="Основная" itemValue="Основная" />
+                                        <f:selectItem itemLabel="Совмещение" itemValue="Совмещение" />
+                                        <f:selectItem itemLabel="Совместительство" itemValue="Совместительство" />
+                                </p:selectOneMenu>
+
+                                <p:outputLabel for="subdivision" value="Подразделение: " />
+                                <p:selectOneMenu styleClass="input_text" id="subdivision" value="#{newJob.subdivision}">
+                                        <f:selectItems value="#{subdivision.subdivisions}" />
+                                </p:selectOneMenu>
+
+                                <h:outputText value="Ставка: "/>
+                                <p:inputText styleClass="input_text" value="#{newJob.salary}"/>
+
+                                <h:outputText value="Оклад: "/>
+                                <p:inputText styleClass="input_text" value="#{newJob.rate}"/>
+
+                                <h:outputText value="Номер приказа: "/>
+                                <p:inputText styleClass="input_text" value="#{newJob.orderNumber}"/>
+
+                                <p:outputLabel for="orderDate" value="Дата приказа: " />
+                                <p:calendar id="orderDate" value="#{newJob.orderDate}" pattern="dd/MM/yyyy" mask="true">
+                                </p:calendar>
+
+                                <p:outputLabel for="emplDate" value="Дата принятия: " />
+                                <p:calendar id="emplDate" value="#{newJob.emplDate}" pattern="dd/MM/yyyy" mask="true"/>
+
+                                <h:outputText value="Номер приказа о увольнении: "/>
+                                <p:inputText styleClass="input_text" value="#{newJob.orderDismissal}"/>
+
+                                <p:outputLabel for="orderDisDate" value="Дата приказа о увольнении: " />
+                                <p:calendar id="orderDisDate" value="#{newJob.orderDisDate}" pattern="dd/MM/yyyy" mask="true" />
+
+                                <p:outputLabel for="disDate" value="Дата увольнения: " />
+                                <p:calendar id="disDate" value="#{newJob.disDate}" pattern="dd/MM/yyyy" mask="true" />
+
+                                <p:outputLabel for="term" value="Срок: " />
+                                <p:calendar id="term" value="#{newJob.term}" pattern="dd/MM/yyyy" mask="true" />
+
+                                <h:outputText value="Колличество рабочих часов: "/>
+                                <p:inputText styleClass="input_text" value="#{newJob.workHours}"/>
+
+                        </h:panelGrid>
+                </p:tab>
+                <p:tab title="Паспорт">
+                        <h:panelGrid columns="2" cellpadding="10">
+                                <h:outputText value="Серия: "/>
+                                <p:inputText styleClass="input_text" value="#{newPassport.serPassport}"/>
+
+                                <h:outputText value="Номер: "/>
+                                <p:inputText styleClass="input_text" value="#{newPassport.numberPassport}"/>
+
+                                <h:outputText value="Кем выдан: "/>
+                                <p:inputTextarea styleClass="input_text" value="#{newPassport.extradition}"/>
+
+                                <p:outputLabel for="exDate" value="Дата выдачи: " />
+                                <p:calendar id="exDate" value="#{newPassport.exDate}" pattern="dd/MM/yyyy" mask="true" />
+
+                                <h:outputText value="ИНН: "/>
+                                <p:inputText styleClass="input_text" value="#{newPassport.inn}"/>
+
+                                <h:outputText value="СНИЛС: "/>
+                                <p:inputText styleClass="input_text" value="#{newPassport.snils}"/>
+                        </h:panelGrid>
+                </p:tab>
+                <p:tab title="Адрес">
+                        <h:panelGrid columns="2" cellpadding="10">
+                                <h:outputText value="Адрес регистрации: "/>
+                                <p:inputText styleClass="input_text address_set" value="#{newAddress.addressReg}"
+                                placeholder="г.Уфа, ул.Правды, 1, кв. 33"/>
+
+                                <h:outputText value="Адрес проживания: "/>
+                                <p:inputText styleClass="input_text address_set" value="#{newAddress.addressRes}"
+                                             placeholder="г.Уфа, ул.Ленина, 44, кв. 1"/>
+                        </h:panelGrid>
+                </p:tab>
+                <p:tab title="Телефон">
+                        <h:panelGrid columns="2" cellpadding="10">
+                                <p:outputLabel for="phone" value="Телефон:" />
+                                <p:inputMask id="phone" value="#{newPhone.phoneNumber}" placeholder="+7(917) 999-9999" mask="+9(999) 999-9999"/>
+                        </h:panelGrid>
+                </p:tab>
+        </p:tabView>
+                <p:commandButton process="@form @all" action="#{userDaoImpl.addUser(newUser, newJob, newPassport, newAddress, newPhone)}" value="Сохранить" ajax="false" />
+        </h:form>
+        </div>
+</ui:define>
+<ui:define name="books_count">
+
+</ui:define>
+</ui:composition>
+</html>

@@ -1,15 +1,12 @@
 package ru.dinis.cadry.entities;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 /**
  * Create by dinis of 04.02.18.
@@ -17,8 +14,8 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 @Component
-@Scope("singleton")
-public class User implements Serializable {
+@Scope
+public class User implements Serializable, Comparable<User> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,25 +34,49 @@ public class User implements Serializable {
     @Column(name = "gender")
     private String gender;
 
+    @Column(name = "birthday")
+    private Date birthday;
+
     @Column(name = "mar_status")
     private boolean marStatus;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @SuppressWarnings("all")
-    private List<Address> addresses = new ArrayList<Address>();
+
+    private Set<Address> addresses = new HashSet<Address>();
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @SuppressWarnings("all")
-    private List<Job> jobs = new ArrayList<Job>();
 
-    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Job> jobs = new HashSet<Job>();
+
+    @OneToOne(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Passport passport = new Passport();
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @SuppressWarnings("all")
-    private List<Phone> phones = new ArrayList<Phone>();
+
+    private Set<Phone> phones = new HashSet<Phone>();
 
     public User() {
+    }
+
+    public void addJob() {
+        Job job = new Job();
+        this.jobs.add(job);
+    }
+
+    @Override
+    public int compareTo(User o) {
+        return this.lastName.compareTo(o.lastName);
+    }
+
+    public void addJob(Job job) {
+        this.jobs.add(job);
+    }
+
+    public Job createJob() {
+        return new Job();
     }
 
     public int getUserId() {
@@ -98,6 +119,14 @@ public class User implements Serializable {
         this.gender = gender;
     }
 
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
     public boolean isMarStatus() {
         return marStatus;
     }
@@ -106,19 +135,19 @@ public class User implements Serializable {
         this.marStatus = marStatus;
     }
 
-    public List<Address> getAddresses() {
+    public Set<Address> getAddresses() {
         return addresses;
     }
 
-    public void setAddresses(List<Address> addresses) {
+    public void setAddresses(Set<Address> addresses) {
         this.addresses = addresses;
     }
 
-    public List<Job> getJobs() {
+    public Set<Job> getJobs() {
         return jobs;
     }
 
-    public void setJobs(List<Job> jobs) {
+    public void setJobs(Set<Job> jobs) {
         this.jobs = jobs;
     }
 
@@ -130,11 +159,11 @@ public class User implements Serializable {
         this.passport = passport;
     }
 
-    public List<Phone> getPhones() {
+    public Set<Phone> getPhones() {
         return phones;
     }
 
-    public void setPhones(List<Phone> phones) {
+    public void setPhones(Set<Phone> phones) {
         this.phones = phones;
     }
 }

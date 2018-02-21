@@ -4,6 +4,7 @@ package ru.dinis.cadry.entities;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.faces.bean.SessionScoped;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -15,13 +16,13 @@ import java.util.Date;
 @Entity
 @Table(name = "job")
 @Component
-@Scope("singleton")
+@Scope
 public class Job implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -43,21 +44,26 @@ public class Job implements Serializable {
     @Column(name = "order_number")
     private String orderNumber;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "order_date")
     private Date orderDate;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "empl_date")
     private Date emplDate;
 
     @Column(name = "order_dismissal")
     private String orderDismissal;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "order_dis_date")
     private Date orderDisDate;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "dis_date")
     private Date disDate;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "term")
     private Date term;
     @Column(name = "work_hourse")

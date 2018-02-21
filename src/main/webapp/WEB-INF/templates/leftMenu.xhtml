@@ -10,7 +10,8 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
     <title>Title</title>
@@ -22,9 +23,13 @@
         <div class="left-menu">
             <h:form styleClass="genres" id="genresForm">
                 <ul>
-                    <ui:repeat value="#{position.positions}" var="pos">
+                    <li>
+                        <h:commandLink value="Все сотрудники" action="allUsers"/>
+                    </li>
+                    <ui:repeat value="#{subdivision.subdivisions}" var="subdiv">
                         <li>
-                        <h:commandLink value="#{pos}" action="#" actionListener="#"/>
+                        <h:commandLink value="#{subdiv}"  action="showListByPosition"
+                                       actionListener="#{userService.setSubdiv(subdiv)}"/>
                         </li>
                     </ui:repeat>
                 </ul>

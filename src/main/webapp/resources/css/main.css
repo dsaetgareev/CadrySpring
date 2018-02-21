@@ -65,7 +65,8 @@ body {
 .feedback:hover {text-decoration: none;}
 .search {margin-top: 15px;
     position: relative;
-    right: 600px;
+    right: 200px;
+    width: 100%;
 }
 
 .dropdown{
@@ -243,9 +244,10 @@ body {
 
 .search_form{
     float: left;
-    width: 100%;
+    width: 70%;
     text-align: right;
     padding: 10px;
+
 
 }
 
@@ -364,4 +366,22 @@ body {
 
 .address_set {
     width: 600px;
+}
+
+.main_user_list {
+    margin: 20px;
+}
+
+.main_user_list li {
+    margin: 20px;
+    font-size: 16px;
+}
+
+.btnAdd {
+    padding: 4px;
+    padding-left: 4px;
+    padding-left: 30px;
+    margin-top: 10px;
+    margin-left: 50px;
+
 }
